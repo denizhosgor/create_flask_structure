@@ -2,8 +2,8 @@
 Creating new flask project tree
 
 
-```
 # Project Structure
+```
 my_flask_app/
 │
 ├── app/
@@ -55,3 +55,12 @@ my_flask_app/
 
 
 You can change Project Name from create file.
+
+# .gitignore inside 
+```
+  venv/
+  *.pyc
+  __pycache__/
+  instance/
+  .webassets-cache
+```
