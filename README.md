@@ -1,5 +1,5 @@
 # create_flask_structure
-Creating new flask project tree
+Creating new flask project tree with user input (project name and port number)
 
 
 # Project Structure
