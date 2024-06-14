@@ -39,7 +39,7 @@ def create_flask_project_structure(project_name):
         f"{project_name}/.flaskenv": "FLASK_APP=run.py\nFLASK_ENV=development",
         f"{project_name}/.gitignore": "venv/\n*.pyc\n__pycache__/\ninstance/\n.webassets-cache\n",
         f"{project_name}/README.md": f"# {project_name.capitalize()}\n\nThis is a Flask web application.",
-        f"{project_name}/run.py": "# run.py\nfrom app import app\n\nif __name__ == '__main__':\n    app.run()"
+        f"{project_name}/run.py": "# run.py\nfrom app import app\n\nif __name__ == '__main__':\n    # Change the port number as per your requirement\n    port = 1234  # Replace with your desired port number\n    app.run(port=port)"
     }
 
     # Create the files with their initial content
