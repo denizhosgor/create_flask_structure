@@ -56,6 +56,12 @@ my_flask_app/
 
 You can change Project Name from create file.
 
+# .flaskenv inside 
+```
+FLASK_APP=run.py
+FLASK_ENV=development
+```
+
 # .gitignore inside 
 ```
   venv/
