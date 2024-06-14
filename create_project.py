@@ -1,6 +1,6 @@
 import os
 
-def create_flask_project_structure(project_name, port_number):
+def create_flask_project_structure(project_name, port_number, host='localhost'):
     # Define the directory structure
     dirs = [
         f"{project_name}/app",
@@ -36,10 +36,10 @@ def create_flask_project_structure(project_name, port_number):
         f"{project_name}/tests/__init__.py": "# tests/__init__.py\n",
         f"{project_name}/tests/test_main.py": "# tests/test_main.py\n# Write tests for main blueprint",
         f"{project_name}/tests/test_auth.py": "# tests/test_auth.py\n# Write tests for auth blueprint",
-        f"{project_name}/.flaskenv": "FLASK_APP=run.py\nFLASK_ENV=development\nFLASK_DEBUG=1",  # Enable debug mode via .flaskenv
+        f"{project_name}/.flaskenv": f"FLASK_APP=run.py\nFLASK_ENV=development\nFLASK_DEBUG=1\nFLASK_RUN_HOST={host}",  # Set the host in .flaskenv
         f"{project_name}/.gitignore": "venv/\n*.pyc\n__pycache__/\ninstance/\n.webassets-cache\n",
         f"{project_name}/README.md": f"# {project_name.capitalize()}\n\nThis is a Flask web application.",
-        f"{project_name}/run.py": f"# run.py\nfrom app import app\n\nif __name__ == '__main__':\n    port = int({port_number} or 5000)\n    app.run(port=port, debug=True)"
+        f"{project_name}/run.py": f"# run.py\nfrom app import app\n\nif __name__ == '__main__':\n    port = int({port_number} or 5000)\n    app.run(host='{host}', port=port, debug=True)"
     }
 
     # Create the files with their initial content
@@ -52,6 +52,7 @@ def create_flask_project_structure(project_name, port_number):
 # Ask for project name input
 project_name = input("Enter the name for your Flask project: ").strip()
 port_number = input("Enter the port number to run the Flask app (default is 5000): ").strip()
+host = input("Enter the host IP address or hostname (default is localhost): ").strip() or 'localhost'  # Default to localhost if empty
 
 # Create the project structure if it doesn't exist
-create_flask_project_structure(project_name, port_number)
+create_flask_project_structure(project_name, port_number, host)
