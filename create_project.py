@@ -1,6 +1,6 @@
 import os
 
-def create_flask_project_structure(project_name):
+def create_flask_project_structure(project_name, port_number):
     # Define the directory structure
     dirs = [
         f"{project_name}/app",
@@ -18,7 +18,7 @@ def create_flask_project_structure(project_name):
     # Create the directories
     for dir in dirs:
         os.makedirs(dir, exist_ok=True)
-    
+
     # Define the files to be created with their initial content
     files = {
         f"{project_name}/app/__init__.py": "# app/__init__.py\nfrom flask import Flask\n\napp = Flask(__name__)\n\nfrom app.main import routes\nfrom app.auth import routes",
@@ -39,17 +39,19 @@ def create_flask_project_structure(project_name):
         f"{project_name}/.flaskenv": "FLASK_APP=run.py\nFLASK_ENV=development",
         f"{project_name}/.gitignore": "venv/\n*.pyc\n__pycache__/\ninstance/\n.webassets-cache\n",
         f"{project_name}/README.md": f"# {project_name.capitalize()}\n\nThis is a Flask web application.",
-        f"{project_name}/run.py": "# run.py\nfrom app import app\n\nif __name__ == '__main__':\n    port = int(input('Enter the port number to run the Flask app (default is 5000): ') or 5000)\n    app.run(port=port)"
+        f"{project_name}/run.py": f"# run.py\nfrom app import app\n\nif __name__ == '__main__':\n    port = int({port_number} or 5000)\n    app.run(port=port)"
     }
 
     # Create the files with their initial content
     for file_path, content in files.items():
         with open(file_path, 'w') as file:
             file.write(content)
-    
+
     print(f"Flask project '{project_name}' structure created successfully!")
+
 # Ask for project name input
 project_name = input("Enter the name for your Flask project: ").strip()
+port_number = input("Enter the port number to run the Flask app (default is 5000): ").strip()
 
 # Create the project structure if it doesn't exist
-create_flask_project_structure(project_name)
+create_flask_project_structure(project_name, port_number)
