@@ -39,7 +39,7 @@ def create_flask_project_structure(project_name):
         f"{project_name}/.flaskenv": "FLASK_APP=run.py\nFLASK_ENV=development",
         f"{project_name}/.gitignore": "venv/\n*.pyc\n__pycache__/\ninstance/\n.webassets-cache\n",
         f"{project_name}/README.md": f"# {project_name.capitalize()}\n\nThis is a Flask web application.",
-        f"{project_name}/run.py": "# run.py\nfrom app import app\n\nif __name__ == '__main__':\n    # Change the port number as per your requirement\n    port = 1234  # Replace with your desired port number\n    app.run(port=port)"
+        f"{project_name}/run.py": "# run.py\nfrom app import app\n\nif __name__ == '__main__':\n    port = int(input('Enter the port number to run the Flask app (default is 5000): ') or 5000)\n    app.run(port=port)"
     }
 
     # Create the files with their initial content
@@ -48,7 +48,8 @@ def create_flask_project_structure(project_name):
             file.write(content)
     
     print(f"Flask project '{project_name}' structure created successfully!")
+# Ask for project name input
+project_name = input("Enter the name for your Flask project: ").strip()
 
-# Example usage
-project_name = "my_flask_app"
+# Create the project structure if it doesn't exist
 create_flask_project_structure(project_name)
